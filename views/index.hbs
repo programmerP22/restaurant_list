@@ -23,8 +23,10 @@
       <div class="card-columns">
 
         {{#each restaurants}}
-        <a href="/restaurants/{{this.id}}" class="text-secondary">
-          <div class="card mb-3">
+
+     
+        {{!-- <a href="/restaurants/{{this.id}}" class="text-secondary"> --}}
+          <div class="card mb-0 mt-4">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{this.name}}</h6>
@@ -39,8 +41,24 @@
               </span>
 
             </div>
+            {{!-- <div class="d-inline p-3">
+              <a class="text-info" href="./restaurants/{{ this._id }}">detail</a>
+              <a class="text-info" href="./restaurants/{{ this._id }}/edit">edit</a>
+              <form class="d-inline-block py-3"  action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+                <button class="btn btn-secondary btn-sm" type="submit">delete</button>
+              </form>
+              </li>
+            </div> --}}
           </div>
-        </a>
+          <div class="" style="text-align: end">
+            <a class="text-prime" href="./restaurants/{{ this._id }}">detail</a>
+            <a class="text-prime" href="./restaurants/{{ this._id }}/edit">edit</a>
+            <form class="d-inline-block py-3" action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+              <button class="btn btn-danger btn-sm" type="submit">delete</button>
+            </form>
+            </li>
+          </div>
+        {{!-- </a> --}}
         {{/each}}
 
       </div>

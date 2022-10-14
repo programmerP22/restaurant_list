@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Restaurant = require('../restaurant') // 載入 todo model
-const restaurantList = require("../../restaurants.json").results
+const restaurants = require("../../restaurants.json").results
 
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -11,7 +11,7 @@ db.on('error', () => {
 
 db.once('open', () => {
   console.log('mongodb connected!')
-  Restaurant.create(restaurantList)
+  Restaurant.create(restaurants)
     .then(() => {
       console.log("restaurantSeeder done!")
       db.close()
