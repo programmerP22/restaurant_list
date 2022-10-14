@@ -1,14 +1,10 @@
 // require packages used in the project
 const express = require('express')
-const mongoose = require('mongoose') // 載入 mongoose
-const app = express()
-const port = 3000
+const mongoose = require('mongoose') 
+const exphbs = require('express-handlebars')
 const Restaurant = require("./models/Restaurant")
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-
-const exphbs = require('express-handlebars')
-
 
 // 取得資料庫連線狀態
 const db = mongoose.connection
@@ -21,6 +17,8 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+const app = express()
+const port = 3000
 
 // setting template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
