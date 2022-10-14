@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose') 
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const Restaurant = require("./models/Restaurant")
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -26,8 +27,11 @@ app.set('view engine', 'hbs')
 
 // setting static files
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // routes setting
+
+// index
 app.get("/", (req, res) => {
   Restaurant.find({})
     .lean()
@@ -37,14 +41,30 @@ app.get("/", (req, res) => {
     .catch(err => console.log(err))
 })
 
+// search
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
   res.render('show', { restaurant: restaurant })
 })
+
+// search
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.trim().toLowerCase()) || restaurant.category.includes(keyword.trim()))
-  res.render('index', { restaurants: restaurants, keyword: keyword })
+  if (!req.query.keyword) {
+    return res.redirect("/")
+  }
+  const keyword = req.query.keyword.trim().toLowerCase()
+
+  Restaurant.find({})
+    .lean()
+    .then(restaurants => {
+      const filteredRestaurants = restaurants.filter(
+        restaurant =>
+          restaurant.name.toLowerCase().includes(keyword) ||
+          restaurant.category.includes(keyword)
+      )
+      res.render('index', { restaurants: filteredRestaurants, keyword })
+    })
+    .catch(error => console.error(error))
 })
 
 // start and listen on the Express server
