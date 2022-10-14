@@ -53,14 +53,14 @@
               </form>
               </li>
             </div> --}}
-          </div>
-          <div class="" style="text-align: end">
-            <a class="text-prime" href="./restaurants/{{ this._id }}">detail</a>
-            <a class="text-prime" href="./restaurants/{{ this._id }}/edit">edit</a>
-            <form class="d-inline-block py-3" action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
-              <button class="btn btn-danger btn-sm" type="submit">delete</button>
-            </form>
-            </li>
+            <div class="card-footer bg-white" style="text-align: end">
+              <a class="text-prime" href="./restaurants/{{ this._id }}">detail</a>
+              <a class="text-prime" href="./restaurants/{{ this._id }}/edit">edit</a>
+              <form class="d-inline-block py-3" action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+                <button class="btn btn-danger btn-sm" type="submit">delete</button>
+              </form>
+              </li>
+            </div>
           </div>
         {{!-- </a> --}}
         {{/each}}
