@@ -41,11 +41,11 @@ app.get("/", (req, res) => {
     .catch(err => console.log(err))
 })
 
-// search
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant })
-})
+// //show
+// app.get('/restaurants/:restaurant_id', (req, res) => {
+//   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
+//   res.render('show', { restaurant: restaurant })
+// })
 
 // search
 app.get('/search', (req, res) => {
@@ -66,6 +66,21 @@ app.get('/search', (req, res) => {
     })
     .catch(error => console.error(error))
 })
+
+
+//new webpage
+app.get("/restaurants/new", (req, res) => {
+  res.render("new")
+})
+
+
+//add function
+app.post("/restaurants", (req, res) => {
+  Restaurant.create(req.body)
+    .then(() => res.redirect("/"))
+    .catch(err => console.log(err))
+})
+
 
 // start and listen on the Express server
 app.listen(port, () => {
