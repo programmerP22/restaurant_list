@@ -1,11 +1,12 @@
 ## Ｍy Restaurant 我的餐廳清單
 
 ### 功能介紹
-
 - 查看目前已有的收藏餐廳清單
-- 點擊瀏覽餐廳的詳細資訊
-- 連結餐廳的地址到 Google 地圖
 - 搜尋清單中的特定餐廳
+- 新增餐廳至收藏餐廳清單
+- 點擊瀏覽餐廳的詳細資訊
+- 點擊修改餐廳的資訊
+- 將餐廳從清單中刪除
 
 ### 專案畫面
 
@@ -13,10 +14,13 @@
 ![Index page about Restaurant List](./public/image/snapshot_index.png)
 
 - 餐廳資訊
-![Information page of clicked restaurant](./public/image/snapshot_info.png)
+![Information page of clicked restaurant](./public/image/snapshot_detail.png)
 
 - 搜尋頁面
 ![Search page about certain restaurant](./public/image/snapshot_search.png)
+
+- 修改頁面
+![Edit page about certain restaurant](./public/image/snapshot_edit.png)
 
 ### 安裝
 
@@ -52,3 +56,6 @@
 - Express 4.18.1
 - Express-Handlebars 3.0.0
 - Bootstrap 4.3.1
+- body-parser 1.20.1
+- mongoose 5.9.7
+- MongoDB
