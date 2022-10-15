@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // index
 app.get("/", (req, res) => {
-  Restaurant.find({})
+  Restaurant.find()
     .lean()
     .then((restaurants) => {
       res.render('index', { restaurants })
@@ -41,11 +41,16 @@ app.get("/", (req, res) => {
     .catch(err => console.log(err))
 })
 
-// //show
-// app.get('/restaurants/:restaurant_id', (req, res) => {
-//   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-//   res.render('show', { restaurant: restaurant })
-// })
+//show detail
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render("show", { restaurant }))
+    .catch(err => console.log(err))
+})
+
+
 
 // search
 app.get('/search', (req, res) => {
