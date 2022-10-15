@@ -12,7 +12,7 @@
           </div>
         </div>
       </form>
-      <!-- add new restaurant -->
+      <!-- crate new restaurant -->
       <div class="py-2">
         <a href="/restaurants/new"><button class="btn btn-primary">新增餐廳</button></a>
       </div>
@@ -27,8 +27,6 @@
       <div class="card-columns">
 
         {{#each restaurants}}
-
-        {{!-- <a href="/restaurants/{{this.id}}" class="text-secondary"> --}}
           <div class="card mb-0 mt-4">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
             <div class="card-body p-3">
@@ -52,7 +50,6 @@
               </li>
             </div>
           </div>
-        {{!-- </a> --}}
         {{/each}}
 
       </div>
