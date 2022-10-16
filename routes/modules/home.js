@@ -38,7 +38,7 @@ router.get('/search/sort', (req, res) => {
   const sortingType = req.query.sortingType
 
   Restaurant.find()
-    .sort(sortSelector(sortingType))// index內傳過來的sortValue帶入sortSelector function
+    .sort(sortSelector(sortingType))
     .lean()
     .then(restaurants => res.render('index', {restaurants}))
     .catch(error => console.log(error))
