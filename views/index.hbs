@@ -2,19 +2,38 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            value="{{keyword}}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
-          </div>
+      <div class="row d-flex">
+        <div class="col-6">
+          <form action="/search">
+            <h4 class="mb-2">尋找餐廳：</h4>
+              <div class="input-group">
+                <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+                  value="{{keyword}}" aria-describedby="search-button">
+                <div class="input-group-append">
+                  <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+              </div>          
+          </form>
         </div>
-      </form>
-      <!-- crate new restaurant -->
-      <div class="py-2">
-        <a href="/restaurants/new"><button class="btn btn-primary">新增餐廳</button></a>
+
+        <div class="col-6">
+
+        <h4 class="mb-2">排序篩選：</h4>
+        <form action="/search/sort">
+          <div class='form-group'>
+            <select class="form-control form-select" name="sortingType" id="sortingType" onchange="this.form.submit()" >
+              <option selected>排序篩選</option>
+              <option value="A-Z">A => Z</option>
+              <option value="Z-A">Z => A</option>
+              <option value="category">類別</option>
+              <option value="location">地區</option>
+              <option value="rating-desc">評分高至低</option>
+              <option value="rating-asc">評分低至高</option>
+            </select>
+          </div>
+        </form>
+
+        </div>
       </div>
     </div>
   </div>
@@ -42,9 +61,9 @@
               </span>
             </div>
             <div class="card-footer bg-white" style="text-align: end">
-              <a class="text-prime" href="./restaurants/{{ this._id }}">detail</a>
-              <a class="text-prime" href="./restaurants/{{ this._id }}/edit">edit</a>
-              <form class="d-inline-block py-3" action="./restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+              <a class="text-prime" href="/restaurants/{{ this._id }}">detail</a>
+              <a class="text-prime" href="/restaurants/{{ this._id }}/edit">edit</a>
+              <form class="d-inline-block py-3" action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
                 <button class="btn btn-danger btn-sm" type="submit">delete</button>
               </form>
               </li>

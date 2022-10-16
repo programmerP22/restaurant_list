@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/Restaurant')
+const sortSelector = require('../../utilities/sortSelector');
 
 //homepage
 router.get('/', (req, res) => {
@@ -32,4 +33,14 @@ router.get('/search', (req, res) => {
     .catch(error => console.error(error))
 })
 
+//sort function
+router.get('/search/sort', (req, res) => {
+  const sortingType = req.query.sortingType
+
+  Restaurant.find()
+    .sort(sortSelector(sortingType))// index內傳過來的sortValue帶入sortSelector function
+    .lean()
+    .then(restaurants => res.render('index', {restaurants}))
+    .catch(error => console.log(error))
+})
 module.exports = router
