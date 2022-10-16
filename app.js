@@ -3,7 +3,12 @@ const express = require('express')
 const mongoose = require('mongoose') 
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+
 const Restaurant = require('./models/Restaurant')
+
+const app = express()
+const port = 3000
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
 // 取得資料庫連線狀態
@@ -17,9 +22,6 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-const app = express()
-const port = 3000
-
 // setting template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
@@ -27,6 +29,7 @@ app.set('view engine', 'hbs')
 // setting static files
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 // routes setting
 
@@ -91,7 +94,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 //edit function
-app.post("/restaurants/:id", (req, res) => {
+app.put("/restaurants/:id", (req, res) => {
   const id = req.params.id
   Restaurant.findByIdAndUpdate(id, req.body)
     .then(()=> {res.redirect(`/restaurants/${id}`)})
@@ -99,7 +102,7 @@ app.post("/restaurants/:id", (req, res) => {
 })
 
 //delete function
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findByIdAndDelete(id)
     .then(() => res.redirect('/'))
