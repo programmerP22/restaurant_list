@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Restaurant = require('../../models/Restaurant')
+const Restaurant = require('../../models/restaurant')
 const sortSelector = require('../../utilities/sortSelector');
 
 //homepage
