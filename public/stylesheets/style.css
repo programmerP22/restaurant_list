@@ -49,13 +49,23 @@ header {
   box-shadow: none;
   border-color: #ced4da;
 }
-
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  /* width: 23%;
+  margin-left: 1%;
+  margin-right: 1%; */
 }
+
+.restaurant-card {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    width: 23%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
 
 .card img {
   height: 180px;
+  /* width: 10rem; */
 }
 
 .card-title {
@@ -99,3 +109,6 @@ header {
   }
 
 }
+
+
+
