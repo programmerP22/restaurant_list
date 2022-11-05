@@ -39,7 +39,8 @@ router.get('/search', (req, res) => {
 //sort function
 router.get('/search/sort', (req, res) => {
   const sortingType = req.query.sortingType
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .sort(sortSelector(sortingType))
     .lean()
     .then(restaurants => res.render('index', {restaurants}))
