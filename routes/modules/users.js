@@ -57,8 +57,7 @@ router.post('/register', (req, res) => {
           email,
           password: hash
         }))
-      // .then(() => res.redirect('/'))
-        // .then(user => console.log(user))
+        //註冊完後直接進入首頁
         .then((user) => {
           req.logIn(user, () => {return res.redirect('/')})
         })
@@ -74,7 +73,5 @@ router.get('/logout', (req, res) => {
   req.flash('success_msg', '你已經成功登出。')
   res.redirect('/users/login')
 })
-
-
 
 module.exports = router
